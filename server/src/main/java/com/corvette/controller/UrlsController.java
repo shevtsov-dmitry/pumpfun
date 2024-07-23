@@ -1,6 +1,7 @@
 package com.corvette.controller;
 
 import com.corvette.service.UrlsService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -32,6 +33,12 @@ public class UrlsController {
 //        return service.changeUrl(to, url);
         return null;
     }
+
+    @PostMapping("/add/mainWebsite/{name}")
+    public ResponseEntity addMainWebsite(@PathVariable String name) {
+       return service.addMainWebsite(name);
+    }
+
 
     @PostMapping("/add")
     public String addUrl(@RequestParam String primarySiteDomain,

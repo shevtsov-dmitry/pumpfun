@@ -3,7 +3,7 @@ package com.corvette.model;
 import jakarta.persistence.*;
 
 @Entity
-public class RedirectedUrls {
+public class RedirectedUrl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,7 +13,13 @@ public class RedirectedUrls {
     @JoinColumn(name = "main_website_id")
     private MainWebsite mainWebsite;
 
-    public RedirectedUrls() {
+    public RedirectedUrl() {
+    }
+
+    public RedirectedUrl(MainWebsite mainWebsite, String name, String url) {
+        this.mainWebsite = mainWebsite;
+        this.name = name;
+        this.url = url;
     }
 
     public Integer getId() {
