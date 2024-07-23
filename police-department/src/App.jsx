@@ -25,10 +25,14 @@ function App() {
                 ref={slideShowRef}
                 className={'flex h-fit w-fit overflow-hidden scroll-smooth'}
             >
-                <img src={'images/slide1.jpg'} />
-                <img src={'images/slide2.jpg'} />
-                <img src={'images/slide3.jpg'} />
-                <img src={'images/slide4.jpg'} />
+                {/*<img src={'images/slide1.jpg'} />*/}
+                {/*<img src={'images/slide2.jpg'} />*/}
+                {/*<img src={'images/slide3.jpg'} />*/}
+                {/*<img src={'images/slide4.jpg'} />*/}
+                <img src={'images/high-quality-assets/slide1.png'} />
+                <img src={'images/high-quality-assets/slide2.png'} />
+                <img src={'images/high-quality-assets/slide3.png'} />
+                <img src={'images/high-quality-assets/slide4.png'} />
             </div>
             <div
                 className={
