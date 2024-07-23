@@ -1,36 +1,32 @@
 package com.corvette.service;
 
-import com.corvette.repository.UrlRepo;
+import com.corvette.model.MainWebsite;
+import com.corvette.repository.MainWebsiteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class UrlsService {
 
     @Autowired
-    private UrlRepo repo;
+    private MainWebsiteRepo mainWebsiteRepo;
 
-    public Map<String, String> listUrls() {
-        Map<String, String> map = new HashMap<>();
-        repo.findAll().forEach(url -> map.put(url.getWebsite(), url.getUrl()));
-        return map;
-    }
-
-    public String getUrl(String website) {
-        return repo.getFirstByWebsite(website).getUrl();
-    }
-
-    public String changeUrl(String to, String url) {
-        try {
-            repo.updateByWebsiteAndUrl(to, url);
-            return  "Successfully updated ✓";
-        } catch (Exception e){
-            e.printStackTrace();
-            return "Error updating data ☠. Happened because website name doesn't exist in database. Check for errors in the spelling of the website to which the link is indicated.";
+    public String addUrl(String primarySiteDomain, String socialMediaName, String socialMediaLink) {
+        primarySiteDomain = decode(primarySiteDomain);
+        socialMediaName = decode(socialMediaName);
+        socialMediaLink = decode(socialMediaLink);
+        if (mainWebsiteRepo.findFirstByDomainName(primarySiteDomain) != null) {
+            System.out.printf("%s already exists.\n", primarySiteDomain);
         }
+        MainWebsite mainWebsite = mainWebsiteRepo.save(new MainWebsite(primarySiteDomain));
+
+        return "";
     }
 
+    public String decode(String reqStr) {
+        return URLDecoder.decode(reqStr, StandardCharsets.UTF_8);
+    }
 }

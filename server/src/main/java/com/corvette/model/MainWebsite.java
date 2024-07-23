@@ -2,8 +2,6 @@ package com.corvette.model;
 
 import jakarta.persistence.*;
 
-import java.lang.annotation.Target;
-
 @Entity
 public class MainWebsite {
     @Id
@@ -13,6 +11,10 @@ public class MainWebsite {
 
     public MainWebsite() {
 
+    }
+
+    public MainWebsite(String domainName) {
+        this.domainName = domainName;
     }
 
     public String getDomainName() {
@@ -29,5 +31,13 @@ public class MainWebsite {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "MainWebsite{" +
+                "id=" + id +
+                ", domainName='" + domainName + '\'' +
+                '}';
     }
 }

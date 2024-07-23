@@ -3,7 +3,6 @@ package com.corvette.controller;
 import com.corvette.service.UrlsService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -17,17 +16,28 @@ public class UrlsController {
     }
 
     @GetMapping("/list")
-    public Map<String, String> listUrls(){
-        return service.listUrls();
+    public Map<String, String> listUrls() {
+//        return service.listUrls();
+        return null;
     }
 
     @GetMapping("/get/{website}")
     public String getUrl(@PathVariable String website) {
-        return service.getUrl(website);
+//        return service.getUrl(website);
+        return null;
     }
 
     @PutMapping("/change")
     public String changeUrl(@RequestParam String to, @RequestParam String url) {
-        return service.changeUrl(to, url);
+//        return service.changeUrl(to, url);
+        return null;
     }
+
+    @PostMapping("/add")
+    public String addUrl(@RequestParam String primarySiteDomain,
+                         @RequestParam String socialMediaName,
+                         @RequestParam String socialMediaLink) {
+        return service.addUrl(primarySiteDomain, socialMediaName, socialMediaLink);
+    }
+
 }
