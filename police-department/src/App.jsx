@@ -1,7 +1,8 @@
 function App() {
-  return (
-    <div className='bg-red-700 text-white font-bold font-serif italic size-20'>Title</div>
-  )
+    return (
+        <div className='bg-[#00276f] w-full min-h-full'>
+        </div>
+    )
 }
 
 export default App
