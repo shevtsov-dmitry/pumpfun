@@ -42,6 +42,14 @@ function App() {
                 </div>
                 <img src={'images/our-mission.jpg'} alt={'our-mission'} />
             </div>
+            <footer className={"bg-[#004592] py-[1.5%] flex items-center justify-center flex-col gap-5"}>
+                <h1 className={"font-circ-bold text-8xl"}>IN CASE OF ANY EMERGENCIES</h1>
+                <ul id={"icons"} className={"flex gap-3"}>
+                    <img src={"images/icon-dex.png"} alt={"icon-dex"}/>
+                    <img src={"images/icon-tground.png"} alt={"icon-tground"}/>
+                    <img src={"images/icon-x.png"} alt={"icon-twitter"}/>
+                </ul>
+            </footer>
         </div>
     )
 }
