@@ -21,5 +21,9 @@
 }
 
 .our-mission-li {
-    @apply text-5xl font-circ-bold;
+    @apply text-8xl font-circ-bold;
+}
+
+.footer-icon {
+    @apply hover:cursor-pointer hover:scale-110 transition-transform;
 }
