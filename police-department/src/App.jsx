@@ -18,7 +18,7 @@ function App() {
 
     useEffect(() => {
         async function fetchUrls() {
-            const req = fetch("https://dogpd.com:8080/list/urls")
+            const req = await fetch("https://dogpd.com:8080/list/urls")
             const res = await req.json()
             setUrls(res.data)
         }
