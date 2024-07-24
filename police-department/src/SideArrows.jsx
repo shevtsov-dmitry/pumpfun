@@ -62,7 +62,7 @@ export function SideArrows(props) {
     }, [scrollableDivRef])
 
     const arrowStyle =
-        'z-20 hover:cursor-pointer hover:bg-blue-600 hover:opacity-100 p-4 rounded-[50%]'
+        'z-20 hover:cursor-pointer hover:bg-blue-600 hover:opacity-100 p-4 rounded-[50%] max-mobile:w-[50px] max-mobile:p-2'
 
     return (
         <div

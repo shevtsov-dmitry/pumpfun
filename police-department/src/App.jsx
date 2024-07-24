@@ -40,13 +40,17 @@ function App() {
         return (
             <footer
                 className={
-                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%] max-laptop:gap-3'
+                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%] max-laptop:gap-3 max-mobile:gap-1'
                 }
             >
-                <h1 className={'font-circ-bold text-8xl max-laptop:text-7xl'}>
+                <h1
+                    className={
+                        'font-circ-bold text-8xl max-laptop:text-7xl max-mobile:mt-2 max-mobile:text-[1rem]'
+                    }
+                >
                     IN CASE OF ANY EMERGENCIES
                 </h1>
-                <ul id={'icons'} className={'flex gap-7'}>
+                <ul id={'icons'} className={'flex gap-7 max-mobile:gap-3'}>
                     <a href={'https://dex.com'}>
                         <img
                             className={'footer-icon'}
@@ -77,7 +81,11 @@ function App() {
         return (
             <header className={'flex w-full items-center justify-around py-2'}>
                 <h1 className={'header-text'}>PREVENT RUGS</h1>
-                <img src={'/images/logo.png'} alt={'logo'} />
+                <img
+                    src={'/images/logo.png'}
+                    className={'max-mobile:w-[30%]'}
+                    alt={'logo'}
+                />
                 <h1 className={'header-text'}>PREVENT SCAM</h1>
             </header>
         )
@@ -90,10 +98,18 @@ function App() {
                     'flex flex-col items-center justify-center bg-[#003793] p-[5%]'
                 }
             >
-                <h1 className={'mb-5 font-circ-bold text-8xl max-laptop:text-[4.25rem]'}>
+                <h1
+                    className={
+                        'mb-5 font-circ-bold text-8xl max-laptop:text-[4.25rem] max-mobile:mb-1 max-mobile:text-2xl'
+                    }
+                >
                     IF YOU NEED ASSISTANCE:
                 </h1>
-                <h1 className={'font-circ-book text-6xl max-laptop:text-5xl'}>
+                <h1
+                    className={
+                        'overflow-hidden font-circ-book text-6xl max-laptop:text-5xl max-mobile:text-[0.5rem]'
+                    }
+                >
                     5LxsSvNDwNmCNPX3a8GVVhp8oUP35KHywWnr8jAvpump
                 </h1>
             </div>
@@ -108,10 +124,14 @@ function App() {
                     id={'our-mission-text-holder'}
                     className={'absolute ml-[3%] mt-[12.5%] max-laptop:mt-[9%]'}
                 >
-                    <h1 className={'mb-5 font-circ-bold text-9xl max-laptop:text-8xl'}>
+                    <h1
+                        className={
+                            'mb-5 font-circ-bold text-9xl max-laptop:text-8xl max-mobile:mb-2 max-mobile:text-3xl'
+                        }
+                    >
                         OUR MISSION:
                     </h1>
-                    <ul className={'flex flex-col gap-6'}>
+                    <ul className={'flex flex-col gap-6 max-mobile:gap-3'}>
                         <li className={'our-mission-li'}>
                             • To protect degens
                         </li>
@@ -130,25 +150,30 @@ function App() {
     }
 
     return (
-        <div ref={mainDivRef} className="min-h-full w-full bg-[#00276f]">
-            <Header />
-            <SideArrows
-                scrollableDivRef={slideShowRef}
-                scrollDistanse={screenWidth}
-            />
+        <body className={"bg-[#00276f] h-screen"}>
             <div
-                ref={slideShowRef}
-                className={'flex h-fit w-fit overflow-hidden scroll-smooth'}
+                ref={mainDivRef}
+                className="min-h-full min-w-full bg-[#00276f]"
             >
-                <img src={'images/slide1.jpg'} />
-                <img src={'images/slide2.jpg'} />
-                <img src={'images/slide3.jpg'} />
-                <img src={'images/slide4.jpg'} />
+                <Header />
+                <SideArrows
+                    scrollableDivRef={slideShowRef}
+                    scrollDistanse={screenWidth}
+                />
+                <div
+                    ref={slideShowRef}
+                    className={'flex h-fit w-fit overflow-hidden scroll-smooth'}
+                >
+                    <img src={'images/slide1.jpg'} />
+                    <img src={'images/slide2.jpg'} />
+                    <img src={'images/slide3.jpg'} />
+                    <img src={'images/slide4.jpg'} />
+                </div>
+                <NeedAssistance />
+                <OurMission />
+                <Footer />
             </div>
-            <NeedAssistance />
-            <OurMission />
-            <Footer />
-        </div>
+        </body>
     )
 }
 
