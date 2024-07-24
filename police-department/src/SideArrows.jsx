@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setIsPlaying } from './redux/slideShowAnimationSlice.js'
 
 /** Custom react component, which adds side arrows to collection, making it interactive and scrollable.
  * requires @property scrollableDivRef collection reference.
@@ -6,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 export function SideArrows(props) {
     const [isPostersBlockHovered, setIsPostersBlockHovered] = useState(true)
     const [isArrowHovered, setIsArrowHovered] = useState(false)
+    const dispatch = useDispatch()
 
     const rightArrowRef = useRef()
     const leftArrowRef = useRef()
@@ -58,17 +61,21 @@ export function SideArrows(props) {
         // blockElement.removeEventListener('scroll', hideArrowsLeaningScreen)
     }, [scrollableDivRef])
 
-    const arrowStyle = 'z-20 hover:cursor-pointer'
+    const arrowStyle =
+        'z-20 hover:cursor-pointer hover:bg-neutral-800 hover:opacity-100 p-4 rounded-[50%]'
 
     return (
         <div
             ref={arrowsHolderRef}
-            className={`absolute mt-[335px] flex h-fit w-full items-center justify-between`}
+            className={`absolute mt-[17%] flex h-fit w-full items-center justify-between`}
         >
             <img
                 ref={leftArrowRef}
                 src={'images/left-arrow.png'}
-                onClick={scrollLeft}
+                onClick={() => {
+                    scrollLeft()
+                    dispatch(setIsPlaying(false))
+                }}
                 className={arrowStyle}
                 onMouseEnter={() => setIsArrowHovered(true)}
                 onMouseLeave={() => setIsArrowHovered(false)}
@@ -77,7 +84,10 @@ export function SideArrows(props) {
             <img
                 ref={rightArrowRef}
                 src={'images/right-arrow.png'}
-                onClick={scrollRight}
+                onClick={() => {
+                    scrollRight()
+                    dispatch(setIsPlaying(false))
+                }}
                 className={arrowStyle}
                 onMouseEnter={() => setIsArrowHovered(true)}
                 onMouseLeave={() => setIsArrowHovered(false)}

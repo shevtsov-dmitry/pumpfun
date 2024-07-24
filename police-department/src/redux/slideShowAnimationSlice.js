@@ -7,10 +7,10 @@ export const slideShowAnimationSlice = createSlice({
     },
     reducers: {
         setIsPlaying: (state, action) => {
-            state.videoId = action.payload
+            state.isPlaying = action.payload
         },
     },
 })
 
-export const { setVideoId } = slideShowAnimationSlice.actions
+export const { setIsPlaying } = slideShowAnimationSlice.actions
 export default slideShowAnimationSlice.reducer
