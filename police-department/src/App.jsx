@@ -10,7 +10,7 @@ function App() {
         (state) => state.slideShowAnimation
     )
 
-    const SLIDE_SHOW_INTERVAL_MS = 3000;
+    const SLIDE_SHOW_INTERVAL_MS = 3000
 
     useEffect(() => {
         if (!mainDivRef) {
@@ -36,26 +36,55 @@ function App() {
         }
     }, [slideShowAnimationState, mainDivRef])
 
-    return (
-        <div ref={mainDivRef} className="min-h-full w-full bg-[#00276f]">
+    function Footer() {
+        return (
+            <footer
+                className={
+                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%]'
+                }
+            >
+                <h1 className={'font-circ-bold text-8xl'}>
+                    IN CASE OF ANY EMERGENCIES
+                </h1>
+                <ul id={'icons'} className={'flex gap-7'}>
+                    <a href={'https://dex.com'}>
+                        <img
+                            className={'footer-icon'}
+                            src={'images/icon-dex.png'}
+                            alt={'icon-dex'}
+                        />
+                    </a>
+                    <a href={'https://tground.com'}>
+                        <img
+                            className={'footer-icon'}
+                            src={'images/icon-tground.png'}
+                            alt={'icon-tground'}
+                        />
+                    </a>
+                    <a href={'https://x.com'}>
+                        <img
+                            className={'footer-icon'}
+                            src={'images/icon-x.png'}
+                            alt={'icon-twitter'}
+                        />
+                    </a>
+                </ul>
+            </footer>
+        )
+    }
+
+    function Header() {
+        return (
             <header className={'flex w-full items-center justify-around py-2'}>
                 <h1 className={'header-text'}>PREVENT RUGS</h1>
                 <img src={'/images/logo.png'} alt={'logo'} />
                 <h1 className={'header-text'}>PREVENT SCAM</h1>
             </header>
-            <SideArrows
-                scrollableDivRef={slideShowRef}
-                scrollDistanse={screenWidth}
-            />
-            <div
-                ref={slideShowRef}
-                className={'flex h-fit w-fit overflow-hidden scroll-smooth'}
-            >
-                <img src={'images/slide1.jpg'} />
-                <img src={'images/slide2.jpg'} />
-                <img src={'images/slide3.jpg'} />
-                <img src={'images/slide4.jpg'} />
-            </div>
+        )
+    }
+
+    function NeedAssistance() {
+        return (
             <div
                 className={
                     'flex flex-col items-center justify-center bg-[#003793] p-[5%]'
@@ -68,6 +97,11 @@ function App() {
                     5LxsSvNDwNmCNPX3a8GVVhp8oUP35KHywWnr8jAvpump
                 </h1>
             </div>
+        )
+    }
+
+    function OurMission() {
+        return (
             <div className={'h-fit w-fit'}>
                 <div className={'flex h-fit items-center justify-center'}></div>
                 <div
@@ -92,32 +126,28 @@ function App() {
                 </div>
                 <img src={'images/our-mission.jpg'} alt={'our-mission'} />
             </div>
-            <footer
-                className={
-                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%]'
-                }
+        )
+    }
+
+    return (
+        <div ref={mainDivRef} className="min-h-full w-full bg-[#00276f]">
+            <Header />
+            <SideArrows
+                scrollableDivRef={slideShowRef}
+                scrollDistanse={screenWidth}
+            />
+            <div
+                ref={slideShowRef}
+                className={'flex h-fit w-fit overflow-hidden scroll-smooth'}
             >
-                <h1 className={'font-circ-bold text-8xl'}>
-                    IN CASE OF ANY EMERGENCIES
-                </h1>
-                <ul id={'icons'} className={'flex gap-7'}>
-                    <img
-                        className={'footer-icon'}
-                        src={'images/icon-dex.png'}
-                        alt={'icon-dex'}
-                    />
-                    <img
-                        className={'footer-icon'}
-                        src={'images/icon-tground.png'}
-                        alt={'icon-tground'}
-                    />
-                    <img
-                        className={'footer-icon'}
-                        src={'images/icon-x.png'}
-                        alt={'icon-twitter'}
-                    />
-                </ul>
-            </footer>
+                <img src={'images/slide1.jpg'} />
+                <img src={'images/slide2.jpg'} />
+                <img src={'images/slide3.jpg'} />
+                <img src={'images/slide4.jpg'} />
+            </div>
+            <NeedAssistance />
+            <OurMission />
+            <Footer />
         </div>
     )
 }

@@ -8,7 +8,7 @@ module.exports = {
                 'circ-bold': ['circ-bold', 'sans-serif'],
             },
             screens: {
-                laptop: '1400px',
+                laptop: '1600px',
                 mobile: '800px',
             },
         },
