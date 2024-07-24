@@ -122,7 +122,7 @@ function App() {
                 <div className={'flex h-fit items-center justify-center'}></div>
                 <div
                     id={'our-mission-text-holder'}
-                    className={'absolute ml-[3%] mt-[12.5%] max-laptop:mt-[9%]'}
+                    className={'absolute ml-[3%] mt-[12.5%] max-laptop:mt-[9%] z-50'}
                 >
                     <h1
                         className={
