@@ -17,7 +17,7 @@
 }
 
 .header-text {
-    @apply font-circ-bold text-8xl font-bold text-white max-laptop:text-[4.25rem] max-mobile:text-2xl;
+    @apply font-circ-bold text-8xl font-bold text-white max-laptop:text-[4.25rem] max-mobile:text-[1rem];
 }
 
 .our-mission-li {

@@ -83,7 +83,7 @@ function App() {
                 <h1 className={'header-text'}>PREVENT RUGS</h1>
                 <img
                     src={'/images/logo.png'}
-                    className={'max-mobile:w-[30%]'}
+                    className={'max-mobile:w-[40px]'}
                     alt={'logo'}
                 />
                 <h1 className={'header-text'}>PREVENT SCAM</h1>
