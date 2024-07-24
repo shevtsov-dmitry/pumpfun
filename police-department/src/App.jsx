@@ -1,16 +1,23 @@
 import { useEffect, useRef, useState } from 'react'
 import { SideArrows } from './SideArrows.jsx'
+import { useSelector } from 'react-redux'
+import { slideShowAnimationSlice } from './redux/slideShowAnimationSlice.js'
 
 function App() {
     const mainDivRef = useRef()
     const slideShowRef = useRef()
     const [screenWidth, setScreenWidth] = useState(0)
+    const slideShowAnimationState = useSelector((state) => state.slideShowAnimation)
+
     useEffect(() => {
         if (!mainDivRef) {
             return
         }
         const screenSizeInPx = mainDivRef.current.offsetWidth
         setScreenWidth(screenSizeInPx)
+        if (!slideShowAnimationState.isPlaying) {
+            return
+        }
         setInterval(() => {
             slideShowRef.current.scrollLeft += screenSizeInPx
         }, 3000)
