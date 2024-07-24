@@ -9,6 +9,21 @@ function App() {
     const slideShowAnimationState = useSelector(
         (state) => state.slideShowAnimation
     )
+    const [urls, setUrls] = useState({
+        dex: "https://dex.com",
+        twitter: "https://twitter.com",
+        telegram: "https://web.telegram.com",
+        token: "5LxsSvNDwNmCNPX3a8GVVhp8oUP35KHywWnr8jAvpump",
+    })
+
+    useEffect(() => {
+        async function fetchUrls() {
+            const req = fetch("https://dogpd.com:8080/list/urls")
+            const res = await req.json()
+            setUrls(res.data)
+        }
+        fetchUrls()
+    }, []);
 
     const SLIDE_SHOW_INTERVAL_MS = 3000
 
@@ -51,21 +66,21 @@ function App() {
                     IN CASE OF ANY EMERGENCIES
                 </h1>
                 <ul id={'icons'} className={'flex gap-7 max-mobile:gap-3'}>
-                    <a href={'https://dex.com'}>
+                    <a href={urls.dex}>
                         <img
                             className={'footer-icon'}
                             src={'images/icon-dex.png'}
                             alt={'icon-dex'}
                         />
                     </a>
-                    <a href={'https://tground.com'}>
+                    <a href={urls.telegram}>
                         <img
                             className={'footer-icon'}
                             src={'images/icon-tground.png'}
                             alt={'icon-tground'}
                         />
                     </a>
-                    <a href={'https://x.com'}>
+                    <a href={urls.twitter}>
                         <img
                             className={'footer-icon'}
                             src={'images/icon-x.png'}
@@ -110,7 +125,7 @@ function App() {
                         'overflow-hidden font-circ-book text-6xl max-laptop:text-5xl max-mobile:text-[0.5rem]'
                     }
                 >
-                    5LxsSvNDwNmCNPX3a8GVVhp8oUP35KHywWnr8jAvpump
+                    {urls.token}
                 </h1>
             </div>
         )
