@@ -17,13 +17,13 @@
 }
 
 .header-text {
-    @apply font-circ-bold text-8xl font-bold text-white;
+    @apply font-circ-bold text-8xl font-bold text-white max-laptop:text-[4.25rem];
 }
 
 .our-mission-li {
-    @apply text-8xl font-circ-bold;
+    @apply text-8xl font-circ-bold max-laptop:text-7xl;
 }
 
 .footer-icon {
-    @apply hover:cursor-pointer hover:scale-110 transition-transform;
+    @apply hover:cursor-pointer hover:scale-110 transition-transform max-laptop:scale-75 ;
 }

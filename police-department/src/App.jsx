@@ -40,10 +40,10 @@ function App() {
         return (
             <footer
                 className={
-                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%]'
+                    'flex flex-col items-center justify-center gap-5 bg-[#004592] py-[1.5%] max-laptop:gap-3'
                 }
             >
-                <h1 className={'font-circ-bold text-8xl'}>
+                <h1 className={'font-circ-bold text-8xl max-laptop:text-7xl'}>
                     IN CASE OF ANY EMERGENCIES
                 </h1>
                 <ul id={'icons'} className={'flex gap-7'}>
@@ -90,10 +90,10 @@ function App() {
                     'flex flex-col items-center justify-center bg-[#003793] p-[5%]'
                 }
             >
-                <h1 className={'mb-5 font-circ-bold text-8xl'}>
+                <h1 className={'mb-5 font-circ-bold text-8xl max-laptop:text-[4.25rem]'}>
                     IF YOU NEED ASSISTANCE:
                 </h1>
-                <h1 className={'font-circ-book text-6xl'}>
+                <h1 className={'font-circ-book text-6xl max-laptop:text-5xl'}>
                     5LxsSvNDwNmCNPX3a8GVVhp8oUP35KHywWnr8jAvpump
                 </h1>
             </div>
@@ -106,9 +106,9 @@ function App() {
                 <div className={'flex h-fit items-center justify-center'}></div>
                 <div
                     id={'our-mission-text-holder'}
-                    className={'absolute ml-[3%] mt-[12.5%]'}
+                    className={'absolute ml-[3%] mt-[12.5%] max-laptop:mt-[9%]'}
                 >
-                    <h1 className={'mb-5 font-circ-bold text-9xl'}>
+                    <h1 className={'mb-5 font-circ-bold text-9xl max-laptop:text-8xl'}>
                         OUR MISSION:
                     </h1>
                     <ul className={'flex flex-col gap-6'}>
