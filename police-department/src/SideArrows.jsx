@@ -67,7 +67,7 @@ export function SideArrows(props) {
     return (
         <div
             ref={arrowsHolderRef}
-            className={`absolute mt-[17%] flex h-fit w-full items-center justify-between`}
+            className={`absolute mt-[17%] flex h-fit w-full items-center justify-between max-mobile:mt-[11%] max-laptop:mt-[15%]`}
         >
             <img
                 ref={leftArrowRef}
