@@ -18,7 +18,7 @@ logging.basicConfig(
 
 OPTION = None
 host_server = "http://localhost:8080"  # TODO make env
-bot_token = ""
+bot_token = "7174358430:AAH1Y7BX5B0ZN6kTxlG6U3rpwsljeDp4R6U"
 admins = [749179973, 5006572203, 5519831621]
 
 keyboard_options = [
@@ -51,10 +51,16 @@ async def admin_options(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
     OPTION = query
     reply_markup = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("← Back", callback_data="admin_panel")]]
+        [[InlineKeyboardButton("← Back", callback_data="back")]]
     )
 
     match query.data:
+        case "back":
+            await query.edit_message_text(
+                "Опции бота",
+                reply_markup=InlineKeyboardMarkup(keyboard_options),
+            )
+            pass
         case "check":
             await check(query)
             pass
@@ -111,6 +117,8 @@ async def change(query) -> None:
         for k, v in m.items():
             options.append([InlineKeyboardButton(k, callback_data=f"change_url_{k}")])
 
+        options.append([InlineKeyboardButton("← Back", callback_data="back")])
+
         await query.edit_message_text(
             text="Выбери что изменить",
             reply_markup=InlineKeyboardMarkup(options),
@@ -143,7 +151,7 @@ async def change_url(to, user_input):
     )
     if resp.status_code == 200:
         await OPTION.edit_message_text(
-            f"{to} Ссылка изменена. ✅",
+            f"Ссылка изменена на {to}. ✅",
             reply_markup=InlineKeyboardMarkup(keyboard_options),
         )
     else:
