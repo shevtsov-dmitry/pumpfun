@@ -16,34 +16,19 @@ public class UrlsController {
         this.service = service;
     }
 
+    @PostMapping("/add")
+    public String addNewString(@RequestParam String website_name, @RequestParam String url) {
+        return service.addUrl(website_name, url);
+    }
+
+    @PatchMapping("/change")
+    public String changeUrl(@RequestParam String website_name, @RequestParam String url) {
+        return service.changeUrl(website_name, url);
+    }
+
     @GetMapping("/list")
     public Map<String, String> listUrls() {
-        // return service.listUrls();
-        return null;
+        return service.listUrls();
     }
-
-    // @GetMapping("/get/{website}")
-    // public String getUrl(@PathVariable String website) {
-    // // return service.getUrl(website);
-    // return null;
-    // }
-
-    // @PutMapping("/change")
-    // public String changeUrl(@RequestParam String to, @RequestParam String url) {
-    // // return service.changeUrl(to, url);
-    // return null;
-    // }
-
-    @PostMapping("/add/main-website-domain/{name}")
-    public ResponseEntity addMainWebsiteDomain(@PathVariable String name) {
-        return service.addMainWebsiteDomain(name);
-    }
-
-    // @PostMapping("/add")
-    // public String addUrl(@RequestParam String primarySiteDomain,
-    // @RequestParam String socialMediaName,
-    // @RequestParam String socialMediaLink) {
-    // return service.addUrl(primarySiteDomain, socialMediaName, socialMediaLink);
-    // }
 
 }
