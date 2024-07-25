@@ -1,5 +1,8 @@
 .idea
 .vscode
+.settings
+
+venv
 
 node_modules
 dist
