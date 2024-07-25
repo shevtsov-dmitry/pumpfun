@@ -1,5 +1,5 @@
-import os
 import logging
+import requests
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
@@ -16,18 +16,16 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 
-
+OPTION = None
 host_server = "http://localhost:8080"  # TODO make env
-bot_token = os.getenv("BOT_TOKEN")
-QUERY = None
-
+bot_token = ""
 admins = [749179973, 5006572203, 5519831621]
 
 keyboard_options = [
-    [InlineKeyboardButton("check", callback_data="check")],
-    [InlineKeyboardButton("add", callback_data="add")],
-    [InlineKeyboardButton("change", callback_data="change")],
-    [InlineKeyboardButton("delete", callback_data="delete")],
+    [InlineKeyboardButton("Показать все", callback_data="check")],
+    # [InlineKeyboardButton("add", callback_data="add")],
+    [InlineKeyboardButton("Изменить", callback_data="change")],
+    # [InlineKeyboardButton("delete", callback_data="delete")],
 ]
 
 app = ApplicationBuilder().token(bot_token).build()
@@ -39,45 +37,124 @@ async def start(update: Update, context: CallbackContext) -> None:
         text = "Вы не включены в список админов, обратитесь к @oh_darlin"
         await update.message.reply_text(text)
     else:
-        text = ""
+        text = "Опции бота"
         await update.message.reply_text(
             text,
             reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "Enter Admin Panel", callback_data="admin_panel"
-                        )
-                    ]
-                ],
+                keyboard_options,
             ),
         )
 
 
 async def admin_options(update: Update, context: CallbackContext) -> None:
-    global QUERY
+    global OPTION
     query = update.callback_query
-    QUERY = query
+    OPTION = query
     reply_markup = InlineKeyboardMarkup(
         [[InlineKeyboardButton("← Back", callback_data="admin_panel")]]
     )
 
+    match query.data:
+        case "check":
+            await check(query)
+            pass
+        case "change":
+            await change(query)
+            pass
+        case "change_url_pumpfun":
+            await query.edit_message_text(
+                "Введи новый адрес pumpfun. Пример: https://twitter.com/corvetteCar",
+                reply_markup=reply_markup,
+            )
+        case "change_url_twitter":
+            await query.edit_message_text(
+                "Введи новый адрес twitter. Пример: https://twitter.com/corvetteCar",
+                reply_markup=reply_markup,
+            )
+        case "change_url_telegram":
+            await query.edit_message_text(
+                "Введи новый адрес telegram. Пример: https://twitter.com/corvetteCar",
+                reply_markup=reply_markup,
+            )
+        case "change_url_CA":
+            await query.edit_message_text(
+                "Введи новый адрес CA.\nПример: 5Xu4Z2yw8ox1senjJxZ7ecdZPBDwJJPbjLKJXMYmpump",
+                reply_markup=reply_markup,
+            )
+
+
+async def check(query) -> None:
+    try:
+        resp = requests.get(host_server + "/urls/list")
+        text = ""
+        m = resp.json()
+        for k, v in m.items():
+            text = f"{text}{k} | {v}\n"
+        await query.edit_message_text(
+            text=text,
+            reply_markup=InlineKeyboardMarkup(keyboard_options),
+            disable_web_page_preview=True,
+        )
+    except requests.RequestException as e:
+        await query.message.reply_text(
+            "При попытке получить URL-адреса произошла ошибка",
+            reply_markup=InlineKeyboardMarkup(keyboard_options),
+        )
+
+
+async def change(query) -> None:
+    try:
+        resp = requests.get(host_server + "/urls/list")
+        options = []
+        m = resp.json()
+
+        for k, v in m.items():
+            options.append([InlineKeyboardButton(k, callback_data=f"change_url_{k}")])
+
+        await query.edit_message_text(
+            text="Выбери что изменить",
+            reply_markup=InlineKeyboardMarkup(options),
+            disable_web_page_preview=True,
+        )
+    except requests.RequestException as e:
+        await query.message.reply_text(
+            "При попытке получить URL-адреса произошла ошибка",
+            reply_markup=InlineKeyboardMarkup(keyboard_options),
+        )
+
+
+async def handle_input(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user_input = update.message.text
+    new_url = user_input
+    match OPTION.data:
+        case "change_url_twitter":
+            await change_url("twitter", new_url)
+        case "change_url_telegram":
+            await change_url("telegram", new_url)
+        case "change_url_CA":
+            await change_url("CA", new_url)
+        case "change_url_pumpfun":
+            await change_url("pumpfun", new_url)
+
+
+async def change_url(to, user_input):
+    resp = requests.patch(
+        f"{host_server}/urls/change?website_name={to}&url={user_input}"
+    )
+    if resp.status_code == 200:
+        await OPTION.edit_message_text(
+            f"{to} Ссылка изменена. ✅",
+            reply_markup=InlineKeyboardMarkup(keyboard_options),
+        )
+    else:
+        await OPTION.edit_message_text(
+            f"Ошибка изменения {to}. Вероятно использованы неподдерживаемые символы ❌",
+            reply_markup=InlineKeyboardMarkup(keyboard_options),
+        )
+
 
 app.add_handler(CommandHandler("start", start))
-app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_input))
 app.add_handler(CallbackQueryHandler(admin_options))
+app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_input))
 
 app.run_polling()
-
-
-# async def change_url(to, user_input):
-# resp = requests.put(f"{host_server}/urls/change?to={to}&url={user_input}")
-# if resp.status_code == 200:
-#     await QUERY.edit_message_text(
-#         f"{to} URL changed. ✅", reply_markup=InlineKeyboardMarkup(keyboard_options)
-#     )
-# else:
-#     await QUERY.edit_message_text(
-#         f"Error changing {to} URL. ❌",
-#         reply_markup=InlineKeyboardMarkup(keyboard_options),
-# )
