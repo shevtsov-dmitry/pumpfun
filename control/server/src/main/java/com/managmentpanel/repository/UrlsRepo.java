@@ -1,6 +1,6 @@
 package com.managmentpanel.repository;
 
-import com.managmentpanel.model.MainWebsite;
+import com.managmentpanel.model.Url;
 
 import jakarta.transaction.Transactional;
 
@@ -17,5 +17,6 @@ public interface UrlsRepo extends JpaRepository<Url, Integer> {
     @Query("UPDATE Url e SET e.url = :url WHERE e.website = :website")
     void updateByWebsiteAndUrl(String website, String url);
 
-    // MainWebsite getFirstByWebsite(String website);
+    @Transactional
+    void deleteByWebsite(String website);
 }

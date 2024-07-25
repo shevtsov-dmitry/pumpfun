@@ -17,18 +17,23 @@ public class UrlsController {
     }
 
     @PostMapping("/add")
-    public String addNewString(@RequestParam String website_name, @RequestParam String url) {
-        return service.addUrl(website_name, url);
+    public ResponseEntity addNewString(@RequestParam String website_name, @RequestParam String url) {
+        return service.addUrl(website_name.trim(), url);
     }
 
     @PatchMapping("/change")
-    public String changeUrl(@RequestParam String website_name, @RequestParam String url) {
+    public ResponseEntity changeUrl(@RequestParam String website_name, @RequestParam String url) {
         return service.changeUrl(website_name, url);
     }
 
     @GetMapping("/list")
     public Map<String, String> listUrls() {
         return service.listUrls();
+    }
+
+    @DeleteMapping("/delete/{website_name}")
+    public ResponseEntity deleteWebsite(@PathVariable String website_name) {
+        return service.deleteWebsite(website_name);
     }
 
 }
