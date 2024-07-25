@@ -1,4 +1,4 @@
-package com.corvette.model;
+package com.managmentpanel.model;
 
 import jakarta.persistence.*;
 

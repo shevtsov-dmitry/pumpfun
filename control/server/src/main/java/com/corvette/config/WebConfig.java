@@ -1,4 +1,4 @@
-package com.corvette.config;
+package com.managmentpanel.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

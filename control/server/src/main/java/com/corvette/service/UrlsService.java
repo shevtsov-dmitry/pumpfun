@@ -1,9 +1,9 @@
-package com.corvette.service;
+package com.managmentpanel.service;
 
-import com.corvette.model.MainWebsite;
-import com.corvette.model.RedirectedUrl;
-import com.corvette.repository.MainWebsiteRepo;
-import com.corvette.repository.RedirectedUrlRepo;
+import com.managmentpanel.model.MainWebsite;
+import com.managmentpanel.model.RedirectedUrl;
+import com.managmentpanel.repository.MainWebsiteRepo;
+import com.managmentpanel.repository.RedirectedUrlRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

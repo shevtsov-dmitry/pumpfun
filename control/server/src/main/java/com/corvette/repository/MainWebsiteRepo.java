@@ -1,6 +1,6 @@
-package com.corvette.repository;
+package com.managmentpanel.repository;
 
-import com.corvette.model.MainWebsite;
+import com.managmentpanel.model.MainWebsite;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

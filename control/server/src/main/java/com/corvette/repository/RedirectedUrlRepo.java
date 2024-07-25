@@ -1,7 +1,7 @@
-package com.corvette.repository;
+package com.managmentpanel.repository;
 
-import com.corvette.model.MainWebsite;
-import com.corvette.model.RedirectedUrl;
+import com.managmentpanel.model.MainWebsite;
+import com.managmentpanel.model.RedirectedUrl;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

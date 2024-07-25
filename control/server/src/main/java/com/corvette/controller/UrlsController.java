@@ -1,6 +1,6 @@
-package com.corvette.controller;
+package com.managmentpanel.controller;
 
-import com.corvette.service.UrlsService;
+import com.managmentpanel.service.UrlsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
