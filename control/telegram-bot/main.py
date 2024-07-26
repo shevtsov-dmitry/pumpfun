@@ -18,7 +18,7 @@ logging.basicConfig(
 
 OPTION = None
 host_server = "http://localhost:8080"  # TODO make env
-bot_token = "7174358430:AAH1Y7BX5B0ZN6kTxlG6U3rpwsljeDp4R6U"
+bot_token = ""
 admins = [749179973, 5006572203, 5519831621]
 
 keyboard_options = [
