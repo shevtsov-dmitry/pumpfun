@@ -20,35 +20,21 @@ function App() {
         fetchUrls()
     }, [])
 
-    useEffect(() => {
-        if (!audioRef.current) {
-            return
-        }
-        const audio = audioRef.current
-
-        // Attempt to autoplay the audio
-        const playPromise = audio.play()
-
-        if (playPromise !== undefined) {
-            playPromise.catch((error) => {
-                console.log('Autoplay prevented:', error)
-                // Autoplay was prevented; show UI to let user manually start audio
-                // This could be a button or any other method of interaction
-            })
-        }
-
-        // Cleanup on component unmount
-        return () => {
-            audio.pause()
-            audio.removeAttribute('src')
-        }
-    }, [])
-
     const socialMediaIconStyle =
         'w-[100%] brightness-[90%] hover:brightness-125 hover:contrast-150 h-[100%]'
 
     return (
         <div className="h-full w-full bg-[#1b1d28]">
+            <div className="flex justify-center">
+                <audio
+                    className="absolute mt-[2%] rounded"
+                    ref={audioRef}
+                    controls
+                    autoPlay
+                >
+                    <source src="audio/arab-song.m4a" type="audio/x-m4a" />
+                </audio>
+            </div>
             <img className="w-full" src="images/bg1.jpg" />
             <div className="mx-5 my-2 flex items-center justify-between font-sans text-5xl font-bold">
                 <img src="images/haram-icon.png" />
@@ -85,9 +71,6 @@ function App() {
                 </div>
             </div>
             <img className="w-full" src="images/bg3.jpg" />
-            <audio autoPlay>
-                <source src="audio/arab-song.m4a" type="audio/x-m4a" />
-            </audio>
         </div>
     )
 }
