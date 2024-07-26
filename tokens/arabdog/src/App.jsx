@@ -21,7 +21,7 @@ function App() {
     }, [])
 
     const socialMediaIconStyle =
-        'w-[100%] brightness-[90%] hover:brightness-125 hover:contrast-150 h-[100%]'
+        'w-[100%] brightness-[90%] hover:brightness-125 hover:contrast-150 h-[100%]  max-[1700px]:w-[90%] max-laptop:scale-75 max-[1000px]:w-[80%]'
 
     return (
         <div className="h-full w-full bg-[#1b1d28]">
@@ -38,7 +38,7 @@ function App() {
             <img className="w-full" src="images/bg1.jpg" />
             <div className="mx-5 my-2 flex items-center justify-between font-sans text-5xl font-bold">
                 <img src="images/haram-icon.png" />
-                <p className="text-white">{urls.CA}</p>
+                <p className="text-white max-laptop:text-[2rem]">{urls.CA}</p>
                 <img src="images/haram-icon.png" />
             </div>
             <div className="h-fit w-fit">
@@ -47,7 +47,7 @@ function App() {
                         className="w-[38.4%]"
                         src="images/dog-with-poster.png"
                     />
-                    <div className="absolute mr-[18%] flex h-[98.5%] w-full flex-col items-center justify-end gap-4">
+                    <div className="absolute mr-[18%] flex h-[98.5%] w-full flex-col items-center justify-end gap-4 max-[1700px]:mt-[10px] max-laptop:mt-[20px] max-laptop:gap-2 max-[1000px]:gap-0">
                         <a href={`${urls.telegram}`}>
                             <img
                                 className={`${socialMediaIconStyle}`}
