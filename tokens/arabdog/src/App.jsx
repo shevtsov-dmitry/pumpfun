@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
+import ProgressBar from './ProgressBar'
 
 function App() {
     const HOST = 'http://localhost:8080'
@@ -29,8 +30,11 @@ function App() {
             <div className="h-fit w-fit">
                 <img src="images/bg2.jpg" />
             </div>
-            <div className="mx-5 my-2 flex items-center justify-between font-sans text-5xl font-bold">
+            <div className="mx-5 my-2 flex items-center justify-center font-sans text-5xl font-bold">
                 <img className="opacity-0" src="images/haram-icon.png" />
+                <div className="absolute w-1/2">
+                    <ProgressBar />
+                </div>
             </div>
             <img src="images/bg3.jpg" />
             {/* <audio controls autoPlay> */}
